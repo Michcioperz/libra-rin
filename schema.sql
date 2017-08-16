@@ -1,4 +1,5 @@
 -- postgres, this is for you
+BEGIN;
 
 CREATE EXTENSION IF NOT EXISTS isn;
 
@@ -28,3 +29,5 @@ CREATE TABLE IF NOT EXISTS loans (
 
 CREATE VIEW IF NOT EXISTS books_enhanced AS
   SELECT books.*, loans.borrower, loans.time AS loan_time FROM books LEFT OUTER JOIN loans ON books.id = loans.book AND loans.time @> NOW();
+
+COMMIT;
