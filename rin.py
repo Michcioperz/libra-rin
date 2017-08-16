@@ -5,7 +5,7 @@ import psycopg2
 app = Flask(__name__)
 
 
-@app.teardown_context
+@app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'db'):
         g.db.close()
