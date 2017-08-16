@@ -1,5 +1,10 @@
 {% extends "core.html" %}
 {% block content %}
+<style>
+  .book[data-borrower] {
+    font-size: small;
+  }
+</style>
 <h1>{{ title }}</h1>
 <table>
   <thead>
@@ -7,26 +12,25 @@
       <th>Title</th>
       <th>Author</th>
       <th>Description</th>
+      <th>Language</th>
       <th class="separator"></th>
       <th>Warehouse</th>
       <th>Current user</th>
       <th class="separator"></th>
-      <th>UUID</th>
       <th>ISBN</th>
     </tr>
   </thead>
   <tbody>
     {% for book in books %}
-    <tr class="book">
+    <tr class="book" {% if book.borrower %}data-borrowed {% endif %}>
       <td>{{ book.title }}</td>
       <td>{% if book.author %}{{ book.author }}{% endif %}</td>
       <td>{% if book.description %}{{ book.description }}{% endif %}</td>
       <td>{% if book.language %}{{ book.language }}{% endif %}</td>
       <td class="separator"></td>
       <td>{{ book.current_warehouse }}</td>
-      <td>{% if book.borrower %}<a title="{{ book.loan_time }}">{{ book.borrower }}</a>{% else %}<span class="free-to-take"></span>{% endif %}</td>
+      <td>{% if book.borrower %}<a title="{{ book.loan_time }}">{{ book.borrower }}</a>{% endif %}</td>
       <td class="separator"></td>
-      <td>{{ book.id }}</td>
       <td>{% if book.isbn %}{{ book.isbn }}{% else %}unknown{% endif %}</td>
     </tr>
     {% endfor %}
