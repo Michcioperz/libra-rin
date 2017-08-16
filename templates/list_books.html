@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Author</th>
       <th>Description</th>
       <th class="separator"></th>
       <th>Warehouse</th>
@@ -18,7 +19,9 @@
     {% for book in books %}
     <tr class="book">
       <td>{{ book.title }}</td>
+      <td>{% if book.author %}{{ book.author }}{% endif %}</td>
       <td>{% if book.description %}{{ book.description }}{% endif %}</td>
+      <td>{% if book.language %}{{ book.language }}{% endif %}</td>
       <td class="separator"></td>
       <td>{{ book.current_warehouse }}</td>
       <td>{% if book.borrower %}<a title="{{ book.loan_time }}">{{ book.borrower }}</a>{% else %}<span class="free-to-take"></span>{% endif %}</td>
