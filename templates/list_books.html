@@ -1,0 +1,32 @@
+{% extends "core.html" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th class="separator"></th>
+      <th>Warehouse</th>
+      <th>Current user</th>
+      <th class="separator"></th>
+      <th>UUID</th>
+      <th>ISBN</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr class="book">
+      <td>{{ book.title }}</td>
+      <td>{% if book.description %}{{ book.description }}{% endif %}</td>
+      <td class="separator"></td>
+      <td>{{ book.current_warehouse }}</td>
+      <td>{% if book.borrower %}<a title="{{ book.loan_time }}">{{ book.borrower }}</a>{% else %}<span class="free-to-take"></span>{% endif %}</td>
+      <td class="separator"></td>
+      <td>{{ book.id }}</td>
+      <td>{% if book.isbn %}{{ book.isbn }}{% else %}unknown{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
