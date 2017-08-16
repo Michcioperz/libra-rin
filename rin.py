@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, g
+from flask import Flask, g, render_template
 import psycopg2
 
 app = Flask(__name__)
