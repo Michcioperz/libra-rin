@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS loans (
   EXCLUDE USING GIST (time WITH &&)
   );
 
-CREATE VIEW IF NOT EXISTS books_enhanced AS
+CREATE OR REPLACE VIEW books_enhanced AS
   SELECT books.*, loans.borrower, loans.time AS loan_time FROM books LEFT OUTER JOIN loans ON books.id = loans.book AND loans.time @> NOW();
 
 COMMIT;
