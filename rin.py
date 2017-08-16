@@ -26,7 +26,7 @@ def books_list(db):
 def list_books():
     db = open_db()
     books = books_list(db)
-    return render_template('list_books.html', dict(title='Books list', books=books))
+    return render_template('list_books.html', title='Books list', books=books)
 
 if __name__ == '__main__':
     app.run(debug=True)
