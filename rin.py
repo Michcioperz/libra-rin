@@ -20,7 +20,10 @@ def books_list(db):
     cur.execute("SELECT * FROM books_enhanced;")
     books = cur.fetchall()
     cur.close()
-    return books
+    return map(books_enhanced_to_dict, books)
+
+def books_enhanced_to_dict(tup):
+    return dict(id=tup[0], isbn=tup[1], title=tup[2], description=tup[3], acquisition=tup[4], current_warehouse=tup[5], borrower=tup[6], loan_time=tup[7])
 
 @app.route('/')
 def list_books():
