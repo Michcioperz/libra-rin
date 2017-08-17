@@ -1,12 +1,22 @@
 {% extends "core.html" %}
 {% block content %}
 <style>
+  body {
+    font-family: serif;
+  }
+  table {
+    border: medium solid darkslategray;
+  }
   .book[data-borrowed] {
     font-size: small;
     font-style: italic;
   }
   .separator {
     background-color: darkslategray;
+    border: none;
+  }
+  .book .isbn {
+    font-family: monospace;
   }
 </style>
 <h1>{{ title }}</h1>
@@ -27,15 +37,15 @@
   <tbody>
     {% for book in books %}
     <tr class="book" {% if book.borrower %}data-borrowed {% endif %}>
-      <td>{{ book.title }}</td>
-      <td>{% if book.author %}{{ book.author }}{% endif %}</td>
-      <td>{% if book.description %}{{ book.description }}{% endif %}</td>
-      <td>{% if book.language %}{{ book.language }}{% endif %}</td>
+      <td class="title">{{ book.title }}</td>
+      <td class="author">{% if book.author %}{{ book.author }}{% endif %}</td>
+      <td class="description">{% if book.description %}{{ book.description }}{% endif %}</td>
+      <td class="language">{% if book.language %}{{ book.language }}{% endif %}</td>
       <td class="separator"></td>
-      <td>{{ book.current_warehouse }}</td>
-      <td>{% if book.borrower %}<a title="{{ book.loan_time }}">{{ book.borrower }}</a>{% endif %}</td>
+      <td class="current_warehouse">{{ book.current_warehouse }}</td>
+      <td class="borrower">{% if book.borrower %}<a title="{{ book.loan_time }}">{{ book.borrower }}</a>{% endif %}</td>
       <td class="separator"></td>
-      <td>{% if book.isbn %}{{ book.isbn }}{% else %}unknown{% endif %}</td>
+      <td class="isbn">{% if book.isbn %}{{ book.isbn }}{% else %}unknown{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>
