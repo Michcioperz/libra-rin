@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS loans (
   borrower TEXT NOT NULL REFERENCES users(name),
   book UUID NOT NULL REFERENCES books(id),
   time TSTZRANGE NOT NULL,
-  EXCLUDE USING GIST (time WITH &&)
+  EXCLUDE USING GIST ((book::text) WITH =, "time" WITH &&)
   );
 
 CREATE OR REPLACE VIEW books_enhanced AS
