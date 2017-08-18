@@ -17,7 +17,7 @@ def open_db():
 
 def books_list(db):
     cur = db.cursor()
-    cur.execute("SELECT * FROM books_enhanced;")
+    cur.execute("SELECT * FROM books_enhanced ORDER BY isbn ASC;")
     books = cur.fetchall()
     cur.close()
     return map(books_enhanced_to_dict, books)
